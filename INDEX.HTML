@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>App de Descuentos</title>
+  <title>PLIN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
@@ -25,13 +25,18 @@
       min-height: 100vh;
       background-color: #ffffff;
       position: relative;
-      padding-bottom: 80px; /* espacio barra inferior */
+      padding-bottom: 80px;
     }
 
-    /* HEADER AMARILLO */
+    /* 🎨 LIME VERDE */
+    :root {
+      --lime: #9BE70A;
+    }
+
+    /* HEADER VERDE */
 
     .header {
-      background-color: #ffd800;
+      background-color: var(--lime);
       border-bottom-left-radius: 24px;
       border-bottom-right-radius: 24px;
       padding: 16px 16px 24px;
@@ -185,11 +190,11 @@
 
     .section-header .link {
       font-size: 12px;
-      color: #f6c400;
-      border-bottom: 2px solid #f6c400;
+      color: var(--lime);
+      border-bottom: 2px solid var(--lime);
     }
 
-    /* TARJETAS DE DESCUENTO DESTACADO */
+    /* DESCUENTOS DESTACADOS */
 
     .cards-row {
       display: flex;
@@ -240,10 +245,10 @@
       opacity: 0.9;
     }
 
-    /* BANNER AMARILLO */
+    /* BANNER VERDE */
 
     .promo-banner {
-      background-color: #ffd800;
+      background-color: var(--lime);
       border-radius: 16px;
       padding: 12px 14px;
       margin-bottom: 20px;
@@ -284,7 +289,7 @@
       border: none;
     }
 
-    /* CERCA TUYO / LISTA DE COMERCIOS */
+    /* CERCA TUYO */
 
     .store-list {
       margin-top: 6px;
@@ -337,7 +342,7 @@
       color: #777;
     }
 
-    /* BARRA INFERIOR */
+    /* BOTTOM NAV */
 
     .bottom-nav {
       position: fixed;
@@ -380,11 +385,6 @@
       opacity: 1;
     }
 
-    .bottom-nav-item.active .home-icon-wrapper {
-      background-color: #ffd800;
-      color: #111;
-    }
-
     .home-icon-wrapper {
       width: 36px;
       height: 36px;
@@ -392,26 +392,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #ffd800;
+      background-color: var(--lime);
       color: #111;
       margin-bottom: 2px;
-    }
-
-    @media (max-width: 360px) {
-      .discount-card img {
-        height: 130px;
-      }
     }
   </style>
 </head>
 <body>
   <div class="app">
+
     <!-- HEADER -->
     <header class="header">
       <div class="status-bar">
         <div class="status-time">12:07</div>
         <div class="status-right">
-          <div class="pill-region">Tuki San Luis</div>
+          <div class="pill-region">PLIN San Luis</div>
           <div class="menu-icon" aria-label="Menú">
             <span></span>
             <span></span>
@@ -480,7 +475,7 @@
         </div>
       </section>
 
-      <!-- BANNER PROMOCIONAL -->
+      <!-- BANNER VERDE LIME -->
       <section class="promo-banner">
         <div class="promo-banner-title">Salí a comer y ganá</div>
         <div class="promo-banner-subtitle">
@@ -548,14 +543,7 @@
         </button>
       </div>
     </nav>
-  </div>
 
-  <!-- JS placeholder: acá después conectamos Firebase, geolocalización, filtros, etc. -->
-  <script>
-    // TODO:
-    // - Pedir ubicación del usuario (navigator.geolocation)
-    // - Cargar comercios desde Firestore
-    // - Filtrar por categoría y búsqueda
-  </script>
+  </div>
 </body>
 </html>
