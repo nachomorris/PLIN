@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>App de Descuentos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f5f5f5;
+      color: #111;
+    }
+
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background-color: #ffffff;
+      position: relative;
+      padding-bottom: 80px; /* espacio barra inferior */
+    }
+
+    /* HEADER AMARILLO */
+
+    .header {
+      background-color: #ffd800;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      padding: 16px 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .status-time {
+      font-weight: 600;
+    }
+
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pill-region {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: #111;
+      color: #fff;
+    }
+
+    .menu-icon {
+      width: 20px;
+      height: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .menu-icon span {
+      height: 2px;
+      border-radius: 999px;
+      background-color: #111;
+      display: block;
+    }
+
+    /* BUSCADOR */
+
+    .search-wrapper {
+      margin-top: 4px;
+    }
+
+    .search-input {
+      background-color: #fff;
+      border-radius: 999px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .search-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 2px solid #888;
+      position: relative;
+    }
+
+    .search-icon::after {
+      content: "";
+      position: absolute;
+      right: -6px;
+      bottom: -2px;
+      width: 8px;
+      height: 2px;
+      border-radius: 999px;
+      background-color: #888;
+      transform: rotate(45deg);
+    }
+
+    .search-input input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 14px;
+      background: transparent;
+    }
+
+    /* CATEGORÍAS */
+
+    .categories-strip {
+      margin-top: 16px;
+      padding: 0 4px;
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .categories-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-pill {
+      flex: 0 0 auto;
+      text-align: center;
+      font-size: 11px;
+      color: #eee;
+    }
+
+    .category-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 4px;
+      overflow: hidden;
+    }
+
+    .category-icon span {
+      font-size: 24px;
+    }
+
+    /* CONTENIDO PRINCIPAL */
+
+    .content {
+      padding: 16px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .section-header .link {
+      font-size: 12px;
+      color: #f6c400;
+      border-bottom: 2px solid #f6c400;
+    }
+
+    /* TARJETAS DE DESCUENTO DESTACADO */
+
+    .cards-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-bottom: 20px;
+    }
+
+    .cards-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .discount-card {
+      flex: 0 0 68%;
+      background-color: #111;
+      border-radius: 18px;
+      overflow: hidden;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .discount-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .discount-card-info {
+      padding: 10px 12px 12px;
+    }
+
+    .discount-card-business {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-bottom: 3px;
+    }
+
+    .discount-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .discount-card-subtitle {
+      font-size: 11px;
+      opacity: 0.9;
+    }
+
+    /* BANNER AMARILLO */
+
+    .promo-banner {
+      background-color: #ffd800;
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .promo-banner-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .promo-banner-subtitle {
+      font-size: 12px;
+    }
+
+    .promo-banner-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .promo-banner-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .promo-banner-btn {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background-color: #111;
+      color: #fff;
+      border: none;
+    }
+
+    /* CERCA TUYO / LISTA DE COMERCIOS */
+
+    .store-list {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .store-card {
+      display: flex;
+      gap: 10px;
+      background-color: #fff;
+      border-radius: 14px;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .store-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .store-info {
+      flex: 1;
+    }
+
+    .store-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .store-deal {
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+
+    .store-meta {
+      font-size: 11px;
+      color: #777;
+    }
+
+    /* BARRA INFERIOR */
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: 100%;
+      max-width: 480px;
+      padding: 8px 24px 12px;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .bottom-nav-inner {
+      background-color: #111;
+      border-radius: 999px;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: all;
+    }
+
+    .bottom-nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 10px;
+      color: #fff;
+      opacity: 0.6;
+      gap: 2px;
+    }
+
+    .bottom-nav-item span.icon {
+      font-size: 16px;
+    }
+
+    .bottom-nav-item.active {
+      opacity: 1;
+    }
+
+    .bottom-nav-item.active .home-icon-wrapper {
+      background-color: #ffd800;
+      color: #111;
+    }
+
+    .home-icon-wrapper {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffd800;
+      color: #111;
+      margin-bottom: 2px;
+    }
+
+    @media (max-width: 360px) {
+      .discount-card img {
+        height: 130px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="status-bar">
+        <div class="status-time">12:07</div>
+        <div class="status-right">
+          <div class="pill-region">Tuki San Luis</div>
+          <div class="menu-icon" aria-label="Menú">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-wrapper">
+        <div class="search-input">
+          <div class="search-icon"></div>
+          <input type="text" placeholder="Buscá tu comercio" />
+        </div>
+      </div>
+
+      <div class="categories-strip">
+        <div class="category-pill">
+          <div class="category-icon"><span>☕</span></div>
+          <div>Cafetería</div>
+        </div>
+        <div class="category-pill">
+          <div class="category-icon"><span>🥩</span></div>
+          <div>Bar/Restó</div>
+        </div>
+        <div class="category-pill">
+          <div class="category-icon"><span>🍔</span></div>
+          <div>Fast Food</div>
+        </div>
+        <div class="category-pill">
+          <div class="category-icon"><span>🍦</span></div>
+          <div>Heladería</div>
+        </div>
+        <div class="category-pill">
+          <div class="category-icon"><span>🍣</span></div>
+          <div>Sushi</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <!-- DESCUENTOS IMPERDIBLES -->
+      <section>
+        <div class="section-header">
+          <h2>Descuentos imperdibles</h2>
+          <div class="link">ver todos</div>
+        </div>
+
+        <div class="cards-row">
+          <article class="discount-card">
+            <img src="https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hamburguesa" />
+            <div class="discount-card-info">
+              <div class="discount-card-business">Mc Burger Potrero</div>
+              <div class="discount-card-title">30% OFF</div>
+              <div class="discount-card-subtitle">Big Nacho • EL CLÁSICO</div>
+            </div>
+          </article>
+
+          <article class="discount-card">
+            <img src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sushi" />
+            <div class="discount-card-info">
+              <div class="discount-card-business">Ai Sushi San Luis</div>
+              <div class="discount-card-title">20% OFF</div>
+              <div class="discount-card-subtitle">Lunes a jueves</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BANNER PROMOCIONAL -->
+      <section class="promo-banner">
+        <div class="promo-banner-title">Salí a comer y ganá</div>
+        <div class="promo-banner-subtitle">
+          Acumulá compras en tus comercios adheridos y recibí comida gratis.
+        </div>
+        <div class="promo-banner-footer">
+          <div class="promo-banner-label">Próximamente</div>
+          <button class="promo-banner-btn">Conocer más</button>
+        </div>
+      </section>
+
+      <!-- CERCA TUYO -->
+      <section>
+        <div class="section-header">
+          <h2>Cerca tuyo</h2>
+        </div>
+
+        <div class="store-list">
+          <article class="store-card">
+            <div class="store-logo">M</div>
+            <div class="store-info">
+              <div class="store-name">Mc Burger Potrero</div>
+              <div class="store-deal">30% OFF en combos seleccionados</div>
+              <div class="store-meta">A 350 m • Todos los días</div>
+            </div>
+          </article>
+
+          <article class="store-card">
+            <div class="store-logo">S</div>
+            <div class="store-info">
+              <div class="store-name">Sushi del Lago</div>
+              <div class="store-deal">2x1 en rolls clásicos</div>
+              <div class="store-meta">A 900 m • Jueves a domingo</div>
+            </div>
+          </article>
+
+          <article class="store-card">
+            <div class="store-logo">C</div>
+            <div class="store-info">
+              <div class="store-name">Café Puntano</div>
+              <div class="store-deal">15% OFF en cafetería</div>
+              <div class="store-meta">A 1,2 km • Lunes a viernes</div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav-inner">
+        <button class="bottom-nav-item" type="button">
+          <span class="icon">🏷️</span>
+          <span>Descuentos</span>
+        </button>
+        <button class="bottom-nav-item active" type="button">
+          <div class="home-icon-wrapper">
+            <span class="icon">🏠</span>
+          </div>
+          <span>Inicio</span>
+        </button>
+        <button class="bottom-nav-item" type="button">
+          <span class="icon">🎁</span>
+          <span>Gift Cards</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- JS placeholder: acá después conectamos Firebase, geolocalización, filtros, etc. -->
+  <script>
+    // TODO:
+    // - Pedir ubicación del usuario (navigator.geolocation)
+    // - Cargar comercios desde Firestore
+    // - Filtrar por categoría y búsqueda
+  </script>
+</body>
+</html>
