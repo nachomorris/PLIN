@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turismo en Potrero de los Funes</title>
+  <meta name="description" content="Guía turística de Potrero de los Funes: alojamiento, actividades, gastronomía y cómo llegar.">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-primario: #0c5c80;
+      --color-secundario: #18a999;
+      --color-fondo: #f5f7fb;
+      --color-texto: #222;
+      --color-blanco: #fff;
+      --sombra-suave: 0 10px 25px rgba(0,0,0,0.08);
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--color-texto);
+      background: var(--color-fondo);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* HEADER / NAV */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(12, 92, 128, 0.9);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-blanco);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-secundario), #41d6c2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--color-blanco);
+      opacity: 0.9;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      font-weight: 400;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: var(--color-secundario);
+      color: var(--color-blanco);
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    /* BURGER MENU (MOBILE) */
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 20px;
+      height: 2px;
+      background: var(--color-blanco);
+      border-radius: 999px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(12, 92, 128, 0.98);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.8rem 1rem;
+        min-width: 200px;
+        transform-origin: top right;
+        transform: scaleY(0);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .nav-links.open {
+        transform: scaleY(1);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 85vh;
+      background: linear-gradient(135deg, rgba(12,92,128,0.9), rgba(24,169,153,0.85)),
+                  url("https://images.pexels.com/photos/730981/pexels-photo-730981.jpeg?auto=compress&cs=tinysrgb&w=1600") center/cover no-repeat;
+      color: var(--color-blanco);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 3rem;
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.35);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #41d6c2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .hero h1 span {
+      color: #b8f5ff;
+    }
+
+    .hero p {
+      font-size: 0.98rem;
+      max-width: 540px;
+      opacity: 0.92;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--color-secundario);
+      color: var(--color-blanco);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.7);
+      color: var(--color-blanco);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .hero-meta-item strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.95);
+      color: #123;
+      padding: 1.4rem;
+      border-radius: 1.1rem;
+      box-shadow: var(--sombra-suave);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card p {
+      font-size: 0.85rem;
+      color: #445;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #eef3ff;
+      color: #234;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .rating span.star {
+      color: #ffca3a;
+      font-size: 1rem;
+    }
+
+    /* SECCIONES GENÉRICAS */
+
+    section {
+      padding: 3.5rem 1.5rem;
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #777;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: #555;
+      max-width: 480px;
+    }
+
+    /* CARDS GRID */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    @media (max-width: 900px) {
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--color-blanco);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--sombra-suave);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .card img {
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 0.9rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+    }
+
+    .card-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #888;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .card-text {
+      font-size: 0.85rem;
+      color: #555;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .card-badge {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(12,92,128,0.07);
+      color: #17455d;
+    }
+
+    .card-link {
+      font-weight: 500;
+      color: var(--color-primario);
+    }
+
+    /* BLOQUE COMO LLEGAR */
+
+    .como-llegar {
+      background: radial-gradient(circle at top left, #e4f4ff, #f5f7fb);
+    }
+
+    .como-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .como-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .info-item-title {
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .map-placeholder {
+      background: var(--color-blanco);
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: var(--sombra-suave);
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .map-box {
+      flex: 1;
+      border-radius: 0.8rem;
+      border: 1px dashed #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+      text-align: center;
+      padding: 0.6rem;
+    }
+
+    .map-note {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 0.6rem;
+    }
+
+    /* INFO ÚTIL */
+
+    .info-util-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .info-util-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .info-util-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-card {
+      background: var(--color-blanco);
+      border-radius: 0.9rem;
+      padding: 0.9rem 1rem;
+      box-shadow: var(--sombra-suave);
+    }
+
+    .info-card h3 {
+      font-size: 0.98rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .info-card li {
+      margin-bottom: 0.3rem;
+    }
+
+    .info-card li::before {
+      content: "•";
+      color: var(--color-secundario);
+      font-weight: bold;
+      display: inline-block;
+      width: 1rem;
+      margin-left: -0.2rem;
+    }
+
+    /* CTA FINAL Y FOOTER */
+
+    .cta-final {
+      background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+      color: var(--color-blanco);
+      text-align: center;
+    }
+
+    .cta-final .section-inner {
+      max-width: 700px;
+    }
+
+    .cta-final h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-final p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+    }
+
+    .cta-final-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+    }
+
+    .btn-light {
+      background: var(--color-blanco);
+      color: var(--color-primario);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .btn-light:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+    }
+
+    footer {
+      background: #0b1821;
+      color: #9ca3af;
+      padding: 1.2rem 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #e5e7eb;
+      opacity: 0.85;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+      <a href="#inicio" class="logo">
+        <div class="logo-icon">PF</div>
+        <span>Turismo Potrero de los Funes</span>
+      </a>
+
+      <nav>
+        <div class="nav-toggle" id="navToggle">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#alojamiento">Alojamiento</a>
+          <a href="#actividades">Actividades</a>
+          <a href="#que-visitar">Qué visitar</a>
+          <a href="#info-util">Info útil</a>
+          <a href="#contacto" class="nav-cta">Contactar</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Destino serrano · San Luis
+          </div>
+          <h1>
+            Descubrí la magia de <span>Potrero de los Funes</span>.
+          </h1>
+          <p>
+            Un lago cristalino rodeado de sierras, circuitos escénicos, gastronomía regional y la calma justa para desconectarte sin perder comodidad.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#alojamiento" class="btn btn-primary">Ver alojamientos</a>
+            <a href="#actividades" class="btn btn-outline">Qué hacer</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <strong>15 min</strong>
+              desde San Luis Capital
+            </div>
+            <div class="hero-meta-item">
+              <strong>Todo el año</strong>
+              temporada turística
+            </div>
+            <div class="hero-meta-item">
+              <strong>+ de 100</strong>
+              opciones de hospedaje
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <h2>Planificá tu estadía</h2>
+          <p>
+            Usá este panel como recordatorio de lo más importante: dónde dormir, qué hacer y cómo llegar. Después podés adaptarlo a tu gusto.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Lago & sierras</span>
+            <span class="pill">Turismo aventura</span>
+            <span class="pill">Escapadas en pareja</span>
+            <span class="pill">Familias</span>
+          </div>
+          <div class="hero-card-footer">
+            <div class="rating">
+              <span class="star">★</span>
+              <span><strong>4.8/5</strong> valorado por viajeros</span>
+            </div>
+            <a href="#contacto" class="card-link">Consultar disponibilidad →</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ALOJAMIENTO -->
+    <section id="alojamiento">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Alojamiento</div>
+            <h2 class="section-title">Dormí frente al lago o entre las sierras</h2>
+            <p class="section-subtitle">
+              Cabañas, aparts, hosterías y hoteles con distintas categorías. Acá podés listar tus propios establecimientos o derivar a un sistema de reservas externo.
+            </p>
+          </div>
+          <a href="#contacto" class="btn btn-primary">Publicar tu alojamiento</a>
+        </div>
+
+        <div class="card-grid">
+          <!-- CARD 1 -->
+          <article class="card">
+            <img src="https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Cabañas en Potrero de los Funes">
+            <div class="card-body">
+              <div class="card-tag">Cabañas</div>
+              <h3 class="card-title">Cabañas con vista al lago</h3>
+              <p class="card-text">
+                Ideal para familias o grupos. Fogón, pileta, cochera y acceso rápido a la costanera.
+              </p>
+              <div class="card-footer">
+                <span class="card-badge">Hasta 6 personas</span>
+                <a href="#" class="card-link">Ver detalle</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 2 -->
+          <article class="card">
+            <img src="https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Hotel en Potrero de los Funes">
+            <div class="card-body">
+              <div class="card-tag">Hoteles</div>
+              <h3 class="card-title">Hoteles con pileta y spa</h3>
+              <p class="card-text">
+                Habitaciones confort, desayuno incluido y servicios pensados para escapadas cortas.
+              </p>
+              <div class="card-footer">
+                <span class="card-badge">Cat. 2★ a 4★</span>
+                <a href="#" class="card-link">Ver listado</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3 -->
+          <article class="card">
+            <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Aparts en Potrero de los Funes">
+            <div class="card-body">
+              <div class="card-tag">Aparts & dúplex</div>
+              <h3 class="card-title">Alojamientos con cocina equipada</h3>
+              <p class="card-text">
+                Opciones prácticas para estadías largas, con cocina completa y espacios amplios.
+              </p>
+              <div class="card-footer">
+                <span class="card-badge">Pet friendly*</span>
+                <a href="#" class="card-link">Ver opciones</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVIDADES -->
+    <section id="actividades">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Actividades</div>
+            <h2 class="section-title">Qué hacer en Potrero de los Funes</h2>
+            <p class="section-subtitle">
+              Caminatas, senderos, paseos náuticos y propuestas culturales. Usá estas tarjetas como guía y adaptá los textos a tus productos reales.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <img src="https://images.pexels.com/photos/2387874/pexels-photo-2387874.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Senderismo en Potrero de los Funes">
+            <div class="card-body">
+              <div class="card-tag">Aventura</div>
+              <h3 class="card-title">Trekking y miradores serranos</h3>
+              <p class="card-text">
+                Senderos señalizados con vistas al lago y a las sierras centrales. Distintas dificultades.
+              </p>
+              <div class="card-footer">
+                <span class="card-badge">Nivel: fácil / medio</span>
+                <a href="#" class="card-link">Más info</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="https://images.pexels.com/photos/1410256/pexels-photo-1410256.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Actividades náuticas">
+            <div class="card-body">
+              <div class="card-tag">Lago</div>
+              <h3 class="card-title">Paseos en kayak y embarcaciones</h3>
+              <p class="card-text">
+                Actividades náuticas para toda la familia en sectores habilitados y con servicio de guardavidas.
+              </p>
+              <div class="card-footer">
+                <span class="card-badge">Temporada de verano</span>
+                <a href="#" class="card-link">Ver prestadores</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="https://images.pexels.com/photos/4109995/pexels-photo-4109995.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Gastronomía">
+            <div class="card-body">
+              <div class="card-tag">Gastronomía</div>
+              <h3 class="card-title">Restos, bares y cervecerías</h3>
+              <p class="card-text">
+                Carta regional, pastas, parrilla, cerveza artesanal y cafés con vista al lago.
+              </p>
+              <div class="card-footer">
+                <span class="card-badge">Menú potrerino</span>
+                <a href="#" class="card-link">Ver dónde comer</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUÉ VISITAR / HIGHLIGHTS -->
+    <section id="que-visitar">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Imperdibles</div>
+            <h2 class="section-title">Lugares claves para tu visita</h2>
+            <p class="section-subtitle">
+              Podés transformar este bloque en una especie de “top 5” con tus recomendaciones oficiales.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-util-grid">
+          <div class="info-card">
+            <h3>Costanera y Paseo del Lago</h3>
+            <ul>
+              <li>Circuito alrededor del lago con miradores y espacios verdes.</li>
+              <li>Ideal para caminar, correr o salir en bici.</li>
+              <li>Cartelería fotográfica y puntos instagrameables.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Parque Nativo</h3>
+            <ul>
+              <li>Área de recreación con parrillas y sombra.</li>
+              <li>Espacios para picnics y juegos para chicos.</li>
+              <li>Acceso a la costa del lago.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Circuito Turístico</h3>
+            <ul>
+              <li>Recorré en auto el antiguo circuito automovilístico.</li>
+              <li>Miradores con vistas panorámicas de Potrero.</li>
+              <li>Ideal para fotografías y atardeceres.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO LLEGAR -->
+    <section id="info-util" class="como-llegar">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Información útil</div>
+            <h2 class="section-title">Cómo llegar y datos prácticos</h2>
+            <p class="section-subtitle">
+              Adaptá estos datos a la info oficial de la Municipalidad o de tu propia oficina de turismo.
+            </p>
+          </div>
+        </div>
+
+        <div class="como-grid">
+          <div class="info-list">
+            <div>
+              <div class="info-item-title">Desde San Luis Capital</div>
+              <p>
+                Por autopista hacia Potrero de los Funes (Ruta Prov. 18). El trayecto demora aproximadamente 15–20 minutos en auto.
+              </p>
+            </div>
+
+            <div>
+              <div class="info-item-title">Transporte público</div>
+              <p>
+                Líneas de colectivos interurbanos con salidas diarias desde la ciudad de San Luis. Verificá horarios actualizados antes de viajar.
+              </p>
+            </div>
+
+            <div>
+              <div class="info-item-title">Mejor época para viajar</div>
+              <p>
+                Todo el año: verano para disfrutar del lago, otoño e invierno para escapadas tranquilas y primavera para senderismo y paisajes verdes.
+              </p>
+            </div>
+          </div>
+
+          <div class="map-placeholder">
+            <div class="map-box">
+              Acá podés embeber un mapa de Google Maps con la ubicación de Potrero de los Funes o un mapa interactivo propio.
+            </div>
+            <p class="map-note">
+              Para embeber un mapa de Google Maps: Compartir → Insertar mapa → copiás el código &lt;iframe&gt; y lo pegás adentro de este recuadro.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL / CONTACTO -->
+    <section id="contacto" class="cta-final">
+      <div class="section-inner">
+        <h2>¿Querés promocionar tu alojamiento o actividad?</h2>
+        <p>
+          Usá esta sección para publicar el contacto oficial de turismo o para que los prestadores te escriban directamente. Podés enlazar a WhatsApp, Instagram o a un formulario.
+        </p>
+        <div class="cta-final-buttons">
+          <a href="https://wa.me/549XXXXXXXXXX" class="btn btn-light">
+            Escribir por WhatsApp
+          </a>
+          <a href="mailto:info@turismoenpotrerodelosfunes.com" class="btn btn-outline">
+            info@turismoenpotrerodelosfunes.com
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Turismo en Potrero de los Funes · Todos los derechos reservados.</div>
+      <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#alojamiento">Alojamiento</a>
+        <a href="#actividades">Actividades</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Año dinámico en el footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Menú mobile
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Cerrar menú al hacer clic en un link (mobile)
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+  </script>
+</body>
+</html>
